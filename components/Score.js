@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, Button, TouchableOpacity } from 'react-n
 import { ScreenOrientation } from 'expo';
 import { red } from 'ansi-colors';
 
-export default class Home extends Component { 
+export default class Score extends Component { 
     constructor(props) {
         super(props)
 
@@ -26,7 +26,7 @@ export default class Home extends Component {
                 style={styles.playGames}
                 onPress={() => this.props.navigation.navigate('Soal')}
                 >
-                <Text style={styles.tombol}>Play Games</Text>
+                <Text style={styles.tombol}>Back to home</Text>
             </TouchableOpacity>
         </View>
         );
