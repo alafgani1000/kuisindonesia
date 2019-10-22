@@ -10,6 +10,7 @@ export default class Soal extends Component {
         this.setCountQuestion = this.setCountQuestion.bind(this);
     }
     state = {
+        key:'',
         counter: 0,
         trueAnswer:0,
         countQuestion:0,
@@ -21,7 +22,7 @@ export default class Soal extends Component {
                 b: 1,
                 c: 4,
                 d: 3,
-                jawaban: 'b',
+                jawaban: 'a',
             },
             {
                 id: 2,
@@ -30,7 +31,7 @@ export default class Soal extends Component {
                 b: 1,
                 c: 2,
                 d: 3,
-                jawaban: 2,
+                jawaban: 'c',
             },
             {
                 id: 3,
@@ -39,13 +40,22 @@ export default class Soal extends Component {
                 b: 1,
                 c: 4,
                 d: 2,
-                jawaban: 2,
+                jawaban: 'b',
             },
         ]
     }
 
-    setCounter = () => {
-        this.setState({counter: this.state.counter + 1})
+    setCounter = (kunci,jawaban) => {
+        if((this.state.countQuestion - this.state.counter) == 1 ) {
+            this.props.navigation.navigate('Score', {
+                id: this.state.trueAnswer
+            })
+        } else {           
+            this.setState({counter: this.state.counter + 1})
+            if(kunci == jawaban) {              
+                this.setState({trueAnswer: this.state.trueAnswer + 1})
+            }
+        }        
     }
 
     setCountQuestion = () => {
@@ -69,7 +79,9 @@ export default class Soal extends Component {
                 <View style={styles.soalContainer}>
                     <TouchableOpacity 
                         style={styles.pilihan}
-                        onPress = {this.setCounter}
+                        onPress = {
+                            () => this.setCounter(this.state.soals[this.state.counter].jawaban,'a')
+                        }
                         >
                         <Text style={styles.tombol}>
                             a. {this.state.soals[this.state.counter].a}
@@ -77,7 +89,9 @@ export default class Soal extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity 
                         style={styles.pilihan}
-                        onPress = {this.setCounter}
+                        onPress = {
+                            () => this.setCounter(this.state.soals[this.state.counter].jawaban,'b')
+                        }
                         >
                         <Text style={styles.tombol}>
                             b. {this.state.soals[this.state.counter].b}
@@ -85,7 +99,9 @@ export default class Soal extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity 
                         style={styles.pilihan}
-                        onPress = {this.setCounter}
+                        onPress = {
+                            () => this.setCounter(this.state.soals[this.state.counter].jawaban,'c')
+                        }
                         >
                         <Text style={styles.tombol}>
                            c. {this.state.soals[this.state.counter].c}
@@ -93,7 +109,9 @@ export default class Soal extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity 
                         style={styles.pilihan}
-                        onPress = {this.setCounter}
+                        onPress = {
+                            () => this.setCounter(this.state.soals[this.state.counter].jawaban,'d')
+                        }
                         >
                         <Text style={styles.tombol}>
                             d. {this.state.soals[this.state.counter].d}

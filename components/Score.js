@@ -19,12 +19,12 @@ export default class Score extends Component {
         return (
         <View style={styles.container}>
             <Text style={styles.title}>
-            Local files and assets can be imported by dragging and dropping them into the editor
+            Socre {this.props.navigation.state.params.id}
             </Text>
             <Image style={styles.logo} source={require('../assets/splash.png')} />
             <TouchableOpacity
                 style={styles.playGames}
-                onPress={() => this.props.navigation.navigate('Soal')}
+                onPress={() => this.props.navigation.navigate('Home')}
                 >
                 <Text style={styles.tombol}>Back to home</Text>
             </TouchableOpacity>
